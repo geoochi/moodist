@@ -2,6 +2,7 @@
   "name": "moodist",
   "type": "module",
   "version": "1.5.1",
+  "packageManager": "pnpm@9.15.0",
   "scripts": {
     "d": "vite --open",
     "b": "vite build",

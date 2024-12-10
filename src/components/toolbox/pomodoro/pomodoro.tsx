@@ -32,7 +32,7 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
   const [timer, setTimer] = useState(0)
   const interval = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const alarm = useSoundEffect('/sounds/alarm.mp3')
+  const alarm = useSoundEffect('./sounds/alarm.mp3')
 
   const defaultTimes = useMemo(
     () => ({

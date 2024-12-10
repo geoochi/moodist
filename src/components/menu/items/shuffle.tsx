@@ -1,19 +1,19 @@
-import { BiShuffle } from 'react-icons/bi/index';
+import { BiShuffle } from 'react-icons/bi'
 
-import { useSoundStore } from '@/stores/sound';
+import { useSoundStore } from '@/stores/sound'
 
-import { Item } from '../item';
+import { Item } from '../item'
 
 export function Shuffle() {
-  const shuffle = useSoundStore(state => state.shuffle);
-  const locked = useSoundStore(state => state.locked);
+  const shuffle = useSoundStore(state => state.shuffle)
+  const locked = useSoundStore(state => state.locked)
 
   return (
     <Item
       disabled={locked}
       icon={<BiShuffle />}
-      label="Shuffle Sounds"
+      label='Shuffle Sounds'
       onClick={shuffle}
     />
-  );
+  )
 }

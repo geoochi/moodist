@@ -1,1 +1,1 @@
-export { Notepad } from './notepad';
+export { Notepad } from './notepad'

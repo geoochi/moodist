@@ -1,1 +1,1 @@
-export { ShareLinkModal } from './share-link';
+export { ShareLinkModal } from './share-link'

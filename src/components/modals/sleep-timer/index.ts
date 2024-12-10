@@ -1,1 +1,1 @@
-export { SleepTimerModal } from './sleep-timer';
+export { SleepTimerModal } from './sleep-timer'

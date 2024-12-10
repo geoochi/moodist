@@ -1,49 +1,49 @@
-import { useRef, useEffect } from 'react';
-import { BiTrash } from 'react-icons/bi/index';
-import { LuCopy, LuDownload } from 'react-icons/lu/index';
-import { FaCheck } from 'react-icons/fa6/index';
-import { FaUndo } from 'react-icons/fa/index';
+import { useRef, useEffect } from 'react'
+import { BiTrash } from 'react-icons/bi'
+import { LuCopy, LuDownload } from 'react-icons/lu'
+import { FaCheck } from 'react-icons/fa6'
+import { FaUndo } from 'react-icons/fa'
 
-import { Modal } from '@/components/modal';
-import { Button } from './button';
+import { Modal } from '@/components/modal'
+import { Button } from './button'
 
-import { useNoteStore } from '@/stores/note';
-import { useCopy } from '@/hooks/use-copy';
-import { download } from '@/helpers/download';
+import { useNoteStore } from '@/stores/note'
+import { useCopy } from '@/hooks/use-copy'
+import { download } from '@/helpers/download'
 
-import styles from './notepad.module.css';
+import styles from './notepad.module.css'
 
 interface NotepadProps {
-  onClose: () => void;
-  show: boolean;
+  onClose: () => void
+  show: boolean
 }
 
 export function Notepad({ onClose, show }: NotepadProps) {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  const note = useNoteStore(state => state.note);
-  const history = useNoteStore(state => state.history);
-  const write = useNoteStore(state => state.write);
-  const words = useNoteStore(state => state.words());
-  const characters = useNoteStore(state => state.characters());
-  const clear = useNoteStore(state => state.clear);
-  const restore = useNoteStore(state => state.restore);
+  const note = useNoteStore(state => state.note)
+  const history = useNoteStore(state => state.history)
+  const write = useNoteStore(state => state.write)
+  const words = useNoteStore(state => state.words())
+  const characters = useNoteStore(state => state.characters())
+  const clear = useNoteStore(state => state.clear)
+  const restore = useNoteStore(state => state.restore)
 
-  const { copy, copying } = useCopy();
+  const { copy, copying } = useCopy()
 
   useEffect(() => {
     if (show && textareaRef.current) {
       setTimeout(() => {
-        textareaRef.current?.focus();
-      }, 10);
+        textareaRef.current?.focus()
+      }, 10)
     }
-  }, [show]);
+  }, [show])
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    e.stopPropagation();
+    e.stopPropagation()
 
-    if (e.key === 'Escape') onClose();
-  };
+    if (e.key === 'Escape') onClose()
+  }
 
   return (
     <Modal show={show} wide onClose={onClose}>
@@ -52,12 +52,12 @@ export function Notepad({ onClose, show }: NotepadProps) {
         <div className={styles.buttons}>
           <Button
             icon={copying ? <FaCheck /> : <LuCopy />}
-            tooltip="Copy Note"
+            tooltip='Copy Note'
             onClick={() => copy(note)}
           />
           <Button
             icon={<LuDownload />}
-            tooltip="Download Note"
+            tooltip='Download Note'
             onClick={() => download('Moodit Note.txt', note)}
           />
           <Button
@@ -72,8 +72,8 @@ export function Notepad({ onClose, show }: NotepadProps) {
 
       <textarea
         className={styles.textarea}
-        dir="auto"
-        placeholder="What is on your mind?"
+        dir='auto'
+        placeholder='What is on your mind?'
         ref={textareaRef}
         spellCheck={false}
         value={note}
@@ -86,5 +86,5 @@ export function Notepad({ onClose, show }: NotepadProps) {
         {words !== 1 && 's'}
       </p>
     </Modal>
-  );
+  )
 }

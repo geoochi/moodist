@@ -7,7 +7,7 @@
  *   - words: The number of words in the input string.
  */
 export function count(_string: string) {
-  const string = _string.trim();
+  const string = _string.trim()
 
   return {
     characters: string.replace(/\s/g, '').length,
@@ -15,5 +15,5 @@ export function count(_string: string) {
       .replace(/\n/g, ' ')
       .split(' ')
       .filter(str => str !== '').length,
-  };
+  }
 }

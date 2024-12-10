@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
-import { useSoundStore } from '@/stores/sound';
-import { useNoteStore } from '@/stores/note';
-import { usePresetStore } from '@/stores/preset';
+import { useSoundStore } from '@/stores/sound'
+import { useNoteStore } from '@/stores/note'
+import { usePresetStore } from '@/stores/preset'
 
 interface StoreConsumerProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export function StoreConsumer({ children }: StoreConsumerProps) {
   useEffect(() => {
-    useSoundStore.persist.rehydrate();
-    useNoteStore.persist.rehydrate();
-    usePresetStore.persist.rehydrate();
-  }, []);
+    useSoundStore.persist.rehydrate()
+    useNoteStore.persist.rehydrate()
+    usePresetStore.persist.rehydrate()
+  }, [])
 
-  return <>{children}</>;
+  return <>{children}</>
 }

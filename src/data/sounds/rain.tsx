@@ -2,13 +2,13 @@ import {
   BsFillCloudRainFill,
   BsFillCloudRainHeavyFill,
   BsUmbrellaFill,
-} from 'react-icons/bs/index';
-import { GiWindow } from 'react-icons/gi/index';
-import { FaLeaf } from 'react-icons/fa/index';
-import { PiTentFill } from 'react-icons/pi/index';
-import { MdOutlineThunderstorm } from 'react-icons/md/index';
+} from 'react-icons/bs'
+import { GiWindow } from 'react-icons/gi'
+import { FaLeaf } from 'react-icons/fa'
+import { PiTentFill } from 'react-icons/pi'
+import { MdOutlineThunderstorm } from 'react-icons/md'
 
-import type { Category } from '../types';
+import type { Category } from '../types'
 
 export const rain: Category = {
   icon: <BsFillCloudRainFill />,
@@ -58,4 +58,4 @@ export const rain: Category = {
     },
   ],
   title: 'Rain',
-};
+}

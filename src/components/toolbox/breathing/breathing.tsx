@@ -1,11 +1,11 @@
-import { Modal } from '@/components/modal';
-import { Exercise } from './exercise';
+import { Modal } from '@/components/modal'
+import { Exercise } from './exercise'
 
-import styles from './breathing.module.css';
+import styles from './breathing.module.css'
 
 interface TimerProps {
-  onClose: () => void;
-  show: boolean;
+  onClose: () => void
+  show: boolean
 }
 
 export function BreathingExercise({ onClose, show }: TimerProps) {
@@ -14,5 +14,5 @@ export function BreathingExercise({ onClose, show }: TimerProps) {
       <h2 className={styles.title}>Breathing Exercise</h2>
       <Exercise />
     </Modal>
-  );
+  )
 }

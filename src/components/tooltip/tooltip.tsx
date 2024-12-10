@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 
-import { slideX, slideY, mix, fade } from '@/lib/motion';
+import { slideX, slideY, mix, fade } from '@/lib/motion'
 
-import styles from './tooltip.module.css';
+import styles from './tooltip.module.css'
 
 type Placement =
   | 'top'
@@ -18,13 +18,13 @@ type Placement =
   | 'bottom-start'
   | 'bottom-end'
   | 'left-start'
-  | 'left-end';
+  | 'left-end'
 
 interface TooltipProps {
-  children: JSX.Element;
-  content: string;
-  placement?: Placement;
-  showDelay?: number;
+  children: React.ReactNode
+  content: string
+  placement?: Placement
+  showDelay?: number
 }
 
 export function Tooltip({
@@ -33,23 +33,23 @@ export function Tooltip({
   placement = 'top',
   showDelay = 500,
 }: TooltipProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
-  const side = placement.split('-')[0] as 'top' | 'right' | 'bottom' | 'left';
+  const side = placement.split('-')[0] as 'top' | 'right' | 'bottom' | 'left'
   const align = placement.split('-')[1] as
     | 'start'
     | 'end'
     | 'center'
-    | undefined;
+    | undefined
 
   const slide = {
     bottom: slideY(-5),
     left: slideX(5),
     right: slideX(-5),
     top: slideY(5),
-  }[side];
+  }[side]
 
-  const variants = mix(fade(), slide!);
+  const variants = mix(fade(), slide!)
 
   return (
     <TooltipPrimitive.Provider delayDuration={showDelay}>
@@ -68,10 +68,10 @@ export function Tooltip({
                 sideOffset={12}
               >
                 <motion.div
-                  animate="show"
+                  animate='show'
                   className={styles.tooltip}
-                  exit="hidden"
-                  initial="hidden"
+                  exit='hidden'
+                  initial='hidden'
                   variants={variants}
                 >
                   {content}
@@ -82,5 +82,5 @@ export function Tooltip({
         </AnimatePresence>
       </TooltipPrimitive.Root>
     </TooltipPrimitive.Provider>
-  );
+  )
 }

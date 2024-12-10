@@ -1,35 +1,35 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type FormEvent } from 'react'
 
-import { cn } from '@/helpers/styles';
-import { useSoundStore } from '@/stores/sound';
-import { usePresetStore } from '@/stores/preset';
+import { cn } from '@/helpers/styles'
+import { useSoundStore } from '@/stores/sound'
+import { usePresetStore } from '@/stores/preset'
 
-import styles from './new.module.css';
+import styles from './new.module.css'
 
 export function New() {
-  const [name, setName] = useState('');
+  const [name, setName] = useState('')
 
-  const noSelected = useSoundStore(state => state.noSelected());
-  const sounds = useSoundStore(state => state.sounds);
-  const addPreset = usePresetStore(state => state.addPreset);
+  const noSelected = useSoundStore(state => state.noSelected())
+  const sounds = useSoundStore(state => state.sounds)
+  const addPreset = usePresetStore(state => state.addPreset)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if (!name || noSelected) return;
+    if (!name || noSelected) return
 
-    const _sounds: Record<string, number> = {};
+    const _sounds: Record<string, number> = {}
 
     Object.keys(sounds)
       .filter(id => sounds[id].isSelected)
       .forEach(id => {
-        _sounds[id] = sounds[id].volume;
-      });
+        _sounds[id] = sounds[id].volume
+      })
 
-    addPreset(name, _sounds);
+    addPreset(name, _sounds)
 
-    setName('');
-  };
+    setName('')
+  }
 
   return (
     <div className={styles.new}>
@@ -43,7 +43,7 @@ export function New() {
           disabled={noSelected}
           placeholder="Preset's Name"
           required
-          type="text"
+          type='text'
           value={name}
           onChange={e => setName(e.target.value)}
         />
@@ -56,5 +56,5 @@ export function New() {
         </p>
       )}
     </div>
-  );
+  )
 }

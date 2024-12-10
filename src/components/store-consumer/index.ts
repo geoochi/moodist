@@ -1,1 +1,1 @@
-export { StoreConsumer } from './store-consumer';
+export { StoreConsumer } from './store-consumer'

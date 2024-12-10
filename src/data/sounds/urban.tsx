@@ -1,10 +1,10 @@
-import { BiSolidTraffic } from 'react-icons/bi/index';
-import { FaCity, FaRoad } from 'react-icons/fa/index';
-import { PiRoadHorizonFill, PiSirenBold } from 'react-icons/pi/index';
-import { BsSoundwave, BsPeopleFill } from 'react-icons/bs/index';
-import { RiSparkling2Fill } from 'react-icons/ri/index';
+import { BiSolidTraffic } from 'react-icons/bi'
+import { FaCity, FaRoad } from 'react-icons/fa'
+import { PiRoadHorizonFill, PiSirenBold } from 'react-icons/pi'
+import { BsSoundwave, BsPeopleFill } from 'react-icons/bs'
+import { RiSparkling2Fill } from 'react-icons/ri'
 
-import type { Category } from '../types';
+import type { Category } from '../types'
 
 export const urban: Category = {
   icon: <FaCity />,
@@ -54,4 +54,4 @@ export const urban: Category = {
     },
   ],
   title: 'Urban',
-};
+}

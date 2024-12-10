@@ -1,38 +1,38 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
-import { FaUndo, FaPlay, FaPause } from 'react-icons/fa/index';
-import { IoMdSettings } from 'react-icons/io/index';
+import { useState, useEffect, useRef, useMemo } from 'react'
+import { FaUndo, FaPlay, FaPause } from 'react-icons/fa'
+import { IoMdSettings } from 'react-icons/io'
 
-import { Modal } from '@/components/modal';
-import { Button } from '../generics/button';
-import { Timer } from '@/components/timer';
-import { Tabs } from './tabs';
-import { Setting } from './setting';
+import { Modal } from '@/components/modal'
+import { Button } from '../generics/button'
+import { Timer } from '@/components/timer'
+import { Tabs } from './tabs'
+import { Setting } from './setting'
 
-import { useLocalStorage } from '@/hooks/use-local-storage';
-import { useSoundEffect } from '@/hooks/use-sound-effect';
-import { usePomodoroStore } from '@/stores/pomodoro';
-import { useCloseListener } from '@/hooks/use-close-listener';
+import { useLocalStorage } from '@/hooks/use-local-storage'
+import { useSoundEffect } from '@/hooks/use-sound-effect'
+import { usePomodoroStore } from '@/stores/pomodoro'
+import { useCloseListener } from '@/hooks/use-close-listener'
 
-import styles from './pomodoro.module.css';
+import styles from './pomodoro.module.css'
 
 interface PomodoroProps {
-  onClose: () => void;
-  open: () => void;
-  show: boolean;
+  onClose: () => void
+  open: () => void
+  show: boolean
 }
 
 export function Pomodoro({ onClose, open, show }: PomodoroProps) {
-  const [showSetting, setShowSetting] = useState(false);
+  const [showSetting, setShowSetting] = useState(false)
 
-  const [selectedTab, setSelectedTab] = useState('pomodoro');
+  const [selectedTab, setSelectedTab] = useState('pomodoro')
 
-  const running = usePomodoroStore(state => state.running);
-  const setRunning = usePomodoroStore(state => state.setRunning);
+  const running = usePomodoroStore(state => state.running)
+  const setRunning = usePomodoroStore(state => state.setRunning)
 
-  const [timer, setTimer] = useState(0);
-  const interval = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [timer, setTimer] = useState(0)
+  const interval = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const alarm = useSoundEffect('/sounds/alarm.mp3');
+  const alarm = useSoundEffect('/sounds/alarm.mp3')
 
   const defaultTimes = useMemo(
     () => ({
@@ -41,18 +41,18 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
       short: 5 * 60,
     }),
     [],
-  );
+  )
 
   const [times, setTimes] = useLocalStorage<Record<string, number>>(
     'moodist-pomodoro-setting',
     defaultTimes,
-  );
+  )
 
   const [completions, setCompletions] = useState<Record<string, number>>({
     long: 0,
     pomodoro: 0,
     short: 0,
-  });
+  })
 
   const tabs = useMemo(
     () => [
@@ -61,63 +61,63 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
       { id: 'long', label: 'Long Break' },
     ],
     [],
-  );
+  )
 
-  useCloseListener(() => setShowSetting(false));
+  useCloseListener(() => setShowSetting(false))
 
   useEffect(() => {
     if (running) {
-      if (interval.current) clearInterval(interval.current);
+      if (interval.current) clearInterval(interval.current)
 
       interval.current = setInterval(() => {
-        setTimer(prev => prev - 1);
-      }, 1000);
+        setTimer(prev => prev - 1)
+      }, 1000)
     } else {
-      if (interval.current) clearInterval(interval.current);
+      if (interval.current) clearInterval(interval.current)
     }
-  }, [running]);
+  }, [running])
 
   useEffect(() => {
     if (timer <= 0 && running) {
-      if (interval.current) clearInterval(interval.current);
+      if (interval.current) clearInterval(interval.current)
 
-      alarm.play();
+      alarm.play()
 
-      setRunning(false);
+      setRunning(false)
       setCompletions(prev => ({
         ...prev,
         [selectedTab]: prev[selectedTab] + 1,
-      }));
+      }))
     }
-  }, [timer, selectedTab, running, setRunning, alarm]);
+  }, [timer, selectedTab, running, setRunning, alarm])
 
   useEffect(() => {
-    const time = times[selectedTab] || 10;
+    const time = times[selectedTab] || 10
 
-    if (interval.current) clearInterval(interval.current);
+    if (interval.current) clearInterval(interval.current)
 
-    setRunning(false);
-    setTimer(time);
-  }, [selectedTab, times, setRunning]);
+    setRunning(false)
+    setTimer(time)
+  }, [selectedTab, times, setRunning])
 
   const toggleRunning = () => {
-    if (running) setRunning(false);
+    if (running) setRunning(false)
     else if (timer <= 0) {
-      const time = times[selectedTab] || 10;
+      const time = times[selectedTab] || 10
 
-      setTimer(time);
-      setRunning(true);
-    } else setRunning(true);
-  };
+      setTimer(time)
+      setRunning(true)
+    } else setRunning(true)
+  }
 
   const restart = () => {
-    if (interval.current) clearInterval(interval.current);
+    if (interval.current) clearInterval(interval.current)
 
-    const time = times[selectedTab] || 10;
+    const time = times[selectedTab] || 10
 
-    setRunning(false);
-    setTimer(time);
-  };
+    setRunning(false)
+    setTimer(time)
+  }
 
   return (
     <>
@@ -128,10 +128,10 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
           <div className={styles.button}>
             <Button
               icon={<IoMdSettings />}
-              tooltip="Change Times"
+              tooltip='Change Times'
               onClick={() => {
-                onClose();
-                setShowSetting(true);
+                onClose()
+                setShowSetting(true)
               }}
             />
           </div>
@@ -148,7 +148,7 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
             <Button
               icon={<FaUndo />}
               smallIcon
-              tooltip="Restart"
+              tooltip='Restart'
               onClick={restart}
             />
             <Button
@@ -165,15 +165,15 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
         show={showSetting}
         times={times}
         onChange={times => {
-          setShowSetting(false);
-          setTimes(times);
-          open();
+          setShowSetting(false)
+          setTimes(times)
+          open()
         }}
         onClose={() => {
-          setShowSetting(false);
-          open();
+          setShowSetting(false)
+          open()
         }}
       />
     </>
-  );
+  )
 }

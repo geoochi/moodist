@@ -6,9 +6,9 @@
  * @param {T} [detail] - Optional data to be passed with the event.
  */
 export function dispatch<T>(eventName: string, detail?: T) {
-  const event = new CustomEvent(eventName, { detail });
+  const event = new CustomEvent(eventName, { detail })
 
-  document.dispatchEvent(event);
+  document.dispatchEvent(event)
 }
 
 /**
@@ -22,15 +22,15 @@ export function dispatch<T>(eventName: string, detail?: T) {
 export function subscribe<T>(eventName: string, listener: (e: T) => void) {
   const handler = (event: Event) => {
     if ('detail' in event) {
-      const payload = event.detail as T;
+      const payload = event.detail as T
 
-      listener(payload);
+      listener(payload)
     }
-  };
+  }
 
-  document.addEventListener(eventName, handler);
+  document.addEventListener(eventName, handler)
 
-  return () => unsubscribe(eventName, handler);
+  return () => unsubscribe(eventName, handler)
 }
 
 /**
@@ -40,5 +40,5 @@ export function subscribe<T>(eventName: string, listener: (e: T) => void) {
  * @param {(e: Event) => void} listener - The function to be removed from the event listeners.
  */
 export function unsubscribe(eventName: string, listener: (e: Event) => void) {
-  document.removeEventListener(eventName, listener);
+  document.removeEventListener(eventName, listener)
 }

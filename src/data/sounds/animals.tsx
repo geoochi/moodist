@@ -4,17 +4,11 @@ import {
   GiWolfHead,
   GiOwl,
   GiWhaleTail,
-} from 'react-icons/gi/index';
-import {
-  FaDog,
-  FaFrog,
-  FaHorseHead,
-  FaCat,
-  FaCrow,
-} from 'react-icons/fa/index';
-import { PiBirdFill, PiDogBold } from 'react-icons/pi/index';
+} from 'react-icons/gi'
+import { FaDog, FaFrog, FaHorseHead, FaCat, FaCrow } from 'react-icons/fa'
+import { PiBirdFill, PiDogBold } from 'react-icons/pi'
 
-import type { Category } from '../types';
+import type { Category } from '../types'
 
 export const animals: Category = {
   icon: <FaDog />,
@@ -88,4 +82,4 @@ export const animals: Category = {
     },
   ],
   title: 'Animals',
-};
+}

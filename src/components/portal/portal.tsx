@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 interface PortalProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export function Portal({ children }: PortalProps) {
-  const [isClientSide, setIsClientSide] = useState(false);
+  const [isClientSide, setIsClientSide] = useState(false)
 
-  useEffect(() => setIsClientSide(true), []);
+  useEffect(() => setIsClientSide(true), [])
 
-  return isClientSide ? createPortal(children, document.body) : null;
+  return isClientSide ? createPortal(children, document.body) : null
 }

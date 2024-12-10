@@ -1,48 +1,48 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
-import { Modal } from '@/components/modal';
+import { Modal } from '@/components/modal'
 
-import { useSoundStore } from '@/stores/sound';
-import { useSnackbar } from '@/contexts/snackbar';
-import { useCloseListener } from '@/hooks/use-close-listener';
-import { cn } from '@/helpers/styles';
-import { sounds } from '@/data/sounds';
+import { useSoundStore } from '@/stores/sound'
+import { useSnackbar } from '@/contexts/snackbar'
+import { useCloseListener } from '@/hooks/use-close-listener'
+import { cn } from '@/helpers/styles'
+import { sounds } from '@/data/sounds'
 
-import styles from './shared.module.css';
+import styles from './shared.module.css'
 
 export function SharedModal() {
-  const override = useSoundStore(state => state.override);
-  const showSnackbar = useSnackbar();
+  const override = useSoundStore(state => state.override)
+  const showSnackbar = useSnackbar()
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
   const [sharedSounds, setSharedSounds] = useState<
     Array<{
-      id: string;
-      label: string;
-      volume: number;
+      id: string
+      label: string
+      volume: number
     }>
-  >([]);
+  >([])
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const share = searchParams.get('share');
+    const searchParams = new URLSearchParams(window.location.search)
+    const share = searchParams.get('share')
 
     if (share) {
       try {
-        const parsed = JSON.parse(decodeURIComponent(share));
-        const allSounds: Record<string, string> = {};
+        const parsed = JSON.parse(decodeURIComponent(share))
+        const allSounds: Record<string, string> = {}
 
         sounds.categories.forEach(category => {
           category.sounds.forEach(sound => {
-            allSounds[sound.id] = sound.label;
-          });
-        });
+            allSounds[sound.id] = sound.label
+          })
+        })
 
         const _sharedSounds: Array<{
-          id: string;
-          label: string;
-          volume: number;
-        }> = [];
+          id: string
+          label: string
+          volume: number
+        }> = []
 
         Object.keys(parsed).forEach(sound => {
           if (allSounds[sound]) {
@@ -50,35 +50,35 @@ export function SharedModal() {
               id: sound,
               label: allSounds[sound],
               volume: Number(parsed[sound]),
-            });
+            })
           }
-        });
+        })
 
         if (_sharedSounds.length) {
-          setIsOpen(true);
-          setSharedSounds(_sharedSounds);
+          setIsOpen(true)
+          setSharedSounds(_sharedSounds)
         }
       } catch (error) {
-        return;
+        return
       } finally {
-        history.pushState({}, '', location.href.split('?')[0]);
+        history.pushState({}, '', location.href.split('?')[0])
       }
     }
-  }, []);
+  }, [])
 
   const handleOverride = () => {
-    const newSounds: Record<string, number> = {};
+    const newSounds: Record<string, number> = {}
 
     sharedSounds.forEach(sound => {
-      newSounds[sound.id] = sound.volume;
-    });
+      newSounds[sound.id] = sound.volume
+    })
 
-    override(newSounds);
-    setIsOpen(false);
-    showSnackbar('Done! You can now play the new selection.');
-  };
+    override(newSounds)
+    setIsOpen(false)
+    showSnackbar('Done! You can now play the new selection.')
+  }
 
-  useCloseListener(() => setIsOpen(false));
+  useCloseListener(() => setIsOpen(false))
 
   return (
     <Modal show={isOpen} onClose={() => setIsOpen(false)}>
@@ -106,5 +106,5 @@ export function SharedModal() {
         </button>
       </div>
     </Modal>
-  );
+  )
 }

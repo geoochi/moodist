@@ -1,12 +1,12 @@
-import { Modal } from '@/components/modal';
-import { New } from './new';
-import { List } from './list';
+import { Modal } from '@/components/modal'
+import { New } from './new'
+import { List } from './list'
 
-import styles from './presets.module.css';
+import styles from './presets.module.css'
 
 interface PresetsModalProps {
-  onClose: () => void;
-  show: boolean;
+  onClose: () => void
+  show: boolean
 }
 
 export function PresetsModal({ onClose, show }: PresetsModalProps) {
@@ -17,5 +17,5 @@ export function PresetsModal({ onClose, show }: PresetsModalProps) {
       <div className={styles.divider} />
       <List close={onClose} />
     </Modal>
-  );
+  )
 }

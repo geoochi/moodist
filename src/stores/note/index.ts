@@ -1,9 +1,9 @@
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
-import merge from 'deepmerge';
+import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
+import merge from 'deepmerge'
 
-import { type NoteState, createState } from './note.state';
-import { type NoteActions, createActions } from './note.actions';
+import { type NoteState, createState } from './note.state'
+import { type NoteActions, createActions } from './note.actions'
 
 export const useNoteStore = create<NoteState & NoteActions>()(
   persist(
@@ -25,4 +25,4 @@ export const useNoteStore = create<NoteState & NoteActions>()(
       version: 0,
     },
   ),
-);
+)

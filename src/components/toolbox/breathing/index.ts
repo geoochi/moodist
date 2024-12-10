@@ -1,1 +1,1 @@
-export { BreathingExercise } from './breathing';
+export { BreathingExercise } from './breathing'

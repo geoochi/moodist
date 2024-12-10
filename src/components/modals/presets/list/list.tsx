@@ -1,20 +1,20 @@
-import { FaPlay, FaRegTrashAlt } from 'react-icons/fa/index';
+import { FaPlay, FaRegTrashAlt } from 'react-icons/fa'
 
-import styles from './list.module.css';
+import styles from './list.module.css'
 
-import { useSoundStore } from '@/stores/sound';
-import { usePresetStore } from '@/stores/preset';
+import { useSoundStore } from '@/stores/sound'
+import { usePresetStore } from '@/stores/preset'
 
 interface ListProps {
-  close: () => void;
+  close: () => void
 }
 
 export function List({ close }: ListProps) {
-  const presets = usePresetStore(state => state.presets);
-  const changeName = usePresetStore(state => state.changeName);
-  const deletePreset = usePresetStore(state => state.deletePreset);
-  const override = useSoundStore(state => state.override);
-  const play = useSoundStore(state => state.play);
+  const presets = usePresetStore(state => state.presets)
+  const changeName = usePresetStore(state => state.changeName)
+  const deletePreset = usePresetStore(state => state.deletePreset)
+  const override = useSoundStore(state => state.override)
+  const play = useSoundStore(state => state.play)
 
   return (
     <div className={styles.list}>
@@ -29,8 +29,8 @@ export function List({ close }: ListProps) {
       {presets.map(preset => (
         <div className={styles.preset} key={preset.id}>
           <input
-            placeholder="Untitled"
-            type="text"
+            placeholder='Untitled'
+            type='text'
             value={preset.label}
             onChange={e => changeName(preset.id, e.target.value)}
           />
@@ -40,9 +40,9 @@ export function List({ close }: ListProps) {
           <button
             className={styles.primary}
             onClick={() => {
-              override(preset.sounds);
-              play();
-              close();
+              override(preset.sounds)
+              play()
+              close()
             }}
           >
             <FaPlay />
@@ -50,5 +50,5 @@ export function List({ close }: ListProps) {
         </div>
       ))}
     </div>
-  );
+  )
 }

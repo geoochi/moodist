@@ -1,11 +1,11 @@
-import { cn } from '@/helpers/styles';
+import { cn } from '@/helpers/styles'
 
-import styles from './tabs.module.css';
+import styles from './tabs.module.css'
 
 interface TabsProps {
-  onSelect: (id: string) => void;
-  selectedTab: string;
-  tabs: Array<{ id: string; label: string }>;
+  onSelect: (id: string) => void
+  selectedTab: string
+  tabs: Array<{ id: string; label: string }>
 }
 
 export function Tabs({ onSelect, selectedTab, tabs }: TabsProps) {
@@ -21,5 +21,5 @@ export function Tabs({ onSelect, selectedTab, tabs }: TabsProps) {
         </button>
       ))}
     </div>
-  );
+  )
 }

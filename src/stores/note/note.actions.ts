@@ -1,11 +1,11 @@
-import type { StateCreator } from 'zustand';
+import type { StateCreator } from 'zustand'
 
-import type { NoteState } from './note.state';
+import type { NoteState } from './note.state'
 
 export interface NoteActions {
-  clear: () => void;
-  restore: () => void;
-  write: (note: string) => void;
+  clear: () => void
+  restore: () => void
+  write: (note: string) => void
 }
 
 export const createActions: StateCreator<
@@ -16,19 +16,19 @@ export const createActions: StateCreator<
 > = (set, get) => {
   return {
     clear() {
-      if (!get().note) return;
+      if (!get().note) return
 
-      set({ history: get().note, note: '' });
+      set({ history: get().note, note: '' })
     },
 
     restore() {
-      if (!get().history) return;
+      if (!get().history) return
 
-      set({ history: null, note: get().history! });
+      set({ history: null, note: get().history! })
     },
 
     write(note) {
-      set({ history: null, note });
+      set({ history: null, note })
     },
-  };
-};
+  }
+}

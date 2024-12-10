@@ -1,1 +1,1 @@
-export { PresetsModal } from './presets';
+export { PresetsModal } from './presets'

@@ -1,10 +1,10 @@
-import { Modal } from '@/components/modal';
+import { Modal } from '@/components/modal'
 
-import styles from './shortcuts.module.css';
+import styles from './shortcuts.module.css'
 
 interface ShortcutsModalProps {
-  onClose: () => void;
-  show: boolean;
+  onClose: () => void
+  show: boolean
 }
 
 export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
@@ -45,7 +45,7 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       keys: ['Shift', 'R'],
       label: 'Unselect All Sounds',
     },
-  ];
+  ]
 
   return (
     <Modal show={show} onClose={onClose}>
@@ -60,12 +60,12 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
         ))}
       </div>
     </Modal>
-  );
+  )
 }
 
 interface RowProps {
-  keys: Array<string>;
-  label: string;
+  keys: Array<string>
+  label: string
 }
 
 function Row({ keys, label }: RowProps) {
@@ -79,13 +79,13 @@ function Row({ keys, label }: RowProps) {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 interface KeyProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 function Key({ children }: KeyProps) {
-  return <div className={styles.key}>{children}</div>;
+  return <div className={styles.key}>{children}</div>
 }

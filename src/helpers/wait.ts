@@ -12,16 +12,16 @@ export function waitUntil(
   return new Promise((resolve, reject) => {
     const intervalId = setInterval(() => {
       try {
-        const result = func();
+        const result = func()
 
         if (result) {
-          clearInterval(intervalId);
-          resolve();
+          clearInterval(intervalId)
+          resolve()
         }
       } catch (error) {
-        clearInterval(intervalId);
-        reject(error);
+        clearInterval(intervalId)
+        reject(error)
       }
-    }, interval);
-  });
+    }, interval)
+  })
 }

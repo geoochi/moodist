@@ -1,15 +1,15 @@
-import { Tooltip } from '@/components/tooltip';
+import { Tooltip } from '@/components/tooltip'
 
-import { cn } from '@/helpers/styles';
+import { cn } from '@/helpers/styles'
 
-import styles from './button.module.css';
+import styles from './button.module.css'
 
 interface ButtonProps {
-  critical?: boolean;
-  icon: React.ReactElement;
-  onClick: () => void;
-  recommended?: boolean;
-  tooltip: string;
+  critical?: boolean
+  icon: React.ReactElement
+  onClick: () => void
+  recommended?: boolean
+  tooltip: string
 }
 
 export function Button({
@@ -20,7 +20,7 @@ export function Button({
   tooltip,
 }: ButtonProps) {
   return (
-    <Tooltip content={tooltip} placement="bottom" showDelay={0}>
+    <Tooltip content={tooltip} placement='bottom' showDelay={0}>
       <button
         className={cn(
           styles.button,
@@ -32,5 +32,5 @@ export function Button({
         {icon}
       </button>
     </Tooltip>
-  );
+  )
 }

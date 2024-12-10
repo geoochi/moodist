@@ -1,25 +1,25 @@
-import { useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { IoClose } from 'react-icons/io5/index';
-import FocusTrap from 'focus-trap-react';
+import { useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { IoClose } from 'react-icons/io5'
+import FocusTrap from 'focus-trap-react'
 
-import { Portal } from '@/components/portal';
+import { Portal } from '@/components/portal'
 
-import { fade, mix, slideY } from '@/lib/motion';
-import { cn } from '@/helpers/styles';
+import { fade, mix, slideY } from '@/lib/motion'
+import { cn } from '@/helpers/styles'
 
-import styles from './modal.module.css';
+import styles from './modal.module.css'
 
 interface ModalProps {
-  children: React.ReactNode;
-  lockBody?: boolean;
-  onClose: () => void;
-  persist?: boolean;
-  show: boolean;
-  wide?: boolean;
+  children: React.ReactNode
+  lockBody?: boolean
+  onClose: () => void
+  persist?: boolean
+  show: boolean
+  wide?: boolean
 }
 
-const TRANSITION_DURATION = 300;
+const TRANSITION_DURATION = 300
 
 export function Modal({
   children,
@@ -32,30 +32,30 @@ export function Modal({
   const variants = {
     modal: mix(fade(), slideY(20)),
     overlay: fade(),
-  };
+  }
 
   useEffect(() => {
     if (show && lockBody) {
-      document.body.style.overflowY = 'hidden';
+      document.body.style.overflowY = 'hidden'
     } else if (lockBody) {
       // Wait for transition to finish before allowing scrollbar to return
       setTimeout(() => {
-        document.body.style.overflowY = 'auto';
-      }, TRANSITION_DURATION);
+        document.body.style.overflowY = 'auto'
+      }, TRANSITION_DURATION)
     }
-  }, [show, lockBody]);
+  }, [show, lockBody])
 
   useEffect(() => {
     function keyListener(e: KeyboardEvent) {
       if (show && e.key === 'Escape') {
-        onClose();
+        onClose()
       }
     }
 
-    document.addEventListener('keydown', keyListener);
+    document.addEventListener('keydown', keyListener)
 
-    return () => document.removeEventListener('keydown', keyListener);
-  }, [onClose, show]);
+    return () => document.removeEventListener('keydown', keyListener)
+  }, [onClose, show])
 
   const animationProps = persist
     ? {
@@ -65,7 +65,7 @@ export function Modal({
         animate: 'show',
         exit: 'hidden',
         initial: 'hidden',
-      };
+      }
 
   const content = (
     <FocusTrap active={show}>
@@ -93,7 +93,7 @@ export function Modal({
         </div>
       </div>
     </FocusTrap>
-  );
+  )
 
   return (
     <Portal>
@@ -103,5 +103,5 @@ export function Modal({
         <AnimatePresence>{show && content}</AnimatePresence>
       )}
     </Portal>
-  );
+  )
 }

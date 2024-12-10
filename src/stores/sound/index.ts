@@ -1,9 +1,9 @@
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
-import merge from 'deepmerge';
+import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
+import merge from 'deepmerge'
 
-import { type SoundState, createState } from './sound.state';
-import { type SoundActions, createActions } from './sound.actions';
+import { type SoundState, createState } from './sound.state'
+import { type SoundActions, createActions } from './sound.actions'
 
 export const useSoundStore = create<SoundState & SoundActions>()(
   persist(
@@ -25,4 +25,4 @@ export const useSoundStore = create<SoundState & SoundActions>()(
       version: 0,
     },
   ),
-);
+)

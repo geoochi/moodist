@@ -1,8 +1,8 @@
-import { useState, useMemo, useCallback } from 'react';
-import { IoMenu, IoClose } from 'react-icons/io5/index';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { useHotkeys } from 'react-hotkeys-hook';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useState, useMemo, useCallback } from 'react'
+import { IoMenu, IoClose } from 'react-icons/io5'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import { useHotkeys } from 'react-hotkeys-hook'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import {
   ShuffleItem,
@@ -16,24 +16,24 @@ import {
   ShortcutsItem,
   SleepTimerItem,
   BreathingExerciseItem,
-} from './items';
-import { Divider } from './divider';
-import { ShareLinkModal } from '@/components/modals/share-link';
-import { PresetsModal } from '@/components/modals/presets';
-import { ShortcutsModal } from '@/components/modals/shortcuts';
-import { SleepTimerModal } from '@/components/modals/sleep-timer';
-import { Notepad, Pomodoro, BreathingExercise } from '@/components/toolbox';
-import { fade, mix, slideY } from '@/lib/motion';
-import { useSoundStore } from '@/stores/sound';
+} from './items'
+import { Divider } from './divider'
+import { ShareLinkModal } from '@/components/modals/share-link'
+import { PresetsModal } from '@/components/modals/presets'
+import { ShortcutsModal } from '@/components/modals/shortcuts'
+import { SleepTimerModal } from '@/components/modals/sleep-timer'
+import { Notepad, Pomodoro, BreathingExercise } from '@/components/toolbox'
+import { fade, mix, slideY } from '@/lib/motion'
+import { useSoundStore } from '@/stores/sound'
 
-import styles from './menu.module.css';
-import { useCloseListener } from '@/hooks/use-close-listener';
-import { closeModals } from '@/lib/modal';
+import styles from './menu.module.css'
+import { useCloseListener } from '@/hooks/use-close-listener'
+import { closeModals } from '@/lib/modal'
 
 export function Menu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
-  const noSelected = useSoundStore(state => state.noSelected());
+  const noSelected = useSoundStore(state => state.noSelected())
 
   const initial = useMemo(
     () => ({
@@ -46,45 +46,45 @@ export function Menu() {
       sleepTimer: false,
     }),
     [],
-  );
+  )
 
-  const [modals, setModals] = useState(initial);
+  const [modals, setModals] = useState(initial)
 
   const close = useCallback((name: string) => {
-    setModals(prev => ({ ...prev, [name]: false }));
-  }, []);
+    setModals(prev => ({ ...prev, [name]: false }))
+  }, [])
 
-  const closeAll = useCallback(() => setModals(initial), [initial]);
+  const closeAll = useCallback(() => setModals(initial), [initial])
 
   const open = useCallback(
     (name: string) => {
-      closeAll();
-      setIsOpen(false);
-      closeModals();
-      setModals(prev => ({ ...prev, [name]: true }));
+      closeAll()
+      setIsOpen(false)
+      closeModals()
+      setModals(prev => ({ ...prev, [name]: true }))
     },
     [closeAll],
-  );
+  )
 
-  useHotkeys('shift+m', () => setIsOpen(prev => !prev));
-  useHotkeys('shift+n', () => open('notepad'));
-  useHotkeys('shift+p', () => open('pomodoro'));
-  useHotkeys('shift+b', () => open('breathingExercise'));
-  useHotkeys('shift+alt+p', () => open('presets'));
-  useHotkeys('shift+h', () => open('shortcuts'));
-  useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
-  useHotkeys('shift+t', () => open('sleepTimer'));
+  useHotkeys('shift+m', () => setIsOpen(prev => !prev))
+  useHotkeys('shift+n', () => open('notepad'))
+  useHotkeys('shift+p', () => open('pomodoro'))
+  useHotkeys('shift+b', () => open('breathingExercise'))
+  useHotkeys('shift+alt+p', () => open('presets'))
+  useHotkeys('shift+h', () => open('shortcuts'))
+  useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected })
+  useHotkeys('shift+t', () => open('sleepTimer'))
 
-  useCloseListener(closeAll);
+  useCloseListener(closeAll)
 
-  const variants = mix(fade(), slideY());
+  const variants = mix(fade(), slideY())
 
   return (
     <>
       <div className={styles.wrapper}>
         <DropdownMenu.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
           <DropdownMenu.Trigger asChild>
-            <button aria-label="Menu" className={styles.menuButton}>
+            <button aria-label='Menu' className={styles.menuButton}>
               {isOpen ? <IoClose /> : <IoMenu />}
             </button>
           </DropdownMenu.Trigger>
@@ -93,17 +93,17 @@ export function Menu() {
             {isOpen && (
               <DropdownMenu.Portal forceMount>
                 <DropdownMenu.Content
-                  align="end"
+                  align='end'
                   asChild
                   collisionPadding={10}
-                  side="top"
+                  side='top'
                   sideOffset={12}
                 >
                   <motion.div
-                    animate="show"
+                    animate='show'
                     className={styles.menu}
-                    exit="hidden"
-                    initial="hidden"
+                    exit='hidden'
+                    initial='hidden'
                     variants={variants}
                   >
                     <PresetsItem open={() => open('presets')} />
@@ -157,5 +157,5 @@ export function Menu() {
         onClose={() => close('sleepTimer')}
       />
     </>
-  );
+  )
 }

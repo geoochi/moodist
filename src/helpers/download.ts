@@ -5,11 +5,11 @@
  * @param {string} content - The content to be included in the downloaded file.
  */
 export function download(filename: string, content: string) {
-  const element = document.createElement('a');
+  const element = document.createElement('a')
   element.setAttribute(
     'href',
     'data:text/plain;charset=utf-8,' + encodeURIComponent(content),
-  );
-  element.setAttribute('download', filename);
-  element.click();
+  )
+  element.setAttribute('download', filename)
+  element.click()
 }

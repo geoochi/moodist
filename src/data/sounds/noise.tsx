@@ -1,7 +1,7 @@
-import { GiSoundWaves } from 'react-icons/gi/index';
-import { BsSoundwave } from 'react-icons/bs/index';
+import { GiSoundWaves } from 'react-icons/gi'
+import { BsSoundwave } from 'react-icons/bs'
 
-import type { Category } from '../types';
+import type { Category } from '../types'
 
 export const noise: Category = {
   icon: <BsSoundwave />,
@@ -27,4 +27,4 @@ export const noise: Category = {
     },
   ],
   title: 'Noise',
-};
+}

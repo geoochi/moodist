@@ -1,1 +1,1 @@
-export { Donate } from './donate';
+export { Donate } from './donate'

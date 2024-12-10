@@ -1,1 +1,1 @@
-export { Shuffle } from './shuffle';
+export { Shuffle } from './shuffle'

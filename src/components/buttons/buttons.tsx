@@ -1,7 +1,7 @@
-import { PlayButton } from './play';
-import { UnselectButton } from './unselect';
+import { PlayButton } from './play'
+import { UnselectButton } from './unselect'
 
-import styles from './buttons.module.css';
+import styles from './buttons.module.css'
 
 export function Buttons() {
   return (
@@ -9,5 +9,5 @@ export function Buttons() {
       <PlayButton />
       <UnselectButton />
     </div>
-  );
+  )
 }

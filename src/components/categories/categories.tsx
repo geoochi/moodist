@@ -1,12 +1,12 @@
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion'
 
-import { Category } from '@/components/category';
-import { Donate } from './donate';
+import { Category } from '@/components/category'
+import { Donate } from './donate'
 
-import type { Categories } from '@/data/types';
+import type { Categories } from '@/data/types'
 
 interface CategoriesProps {
-  categories: Categories;
+  categories: Categories
 }
 
 export function Categories({ categories }: CategoriesProps) {
@@ -20,5 +20,5 @@ export function Categories({ categories }: CategoriesProps) {
         </div>
       ))}
     </AnimatePresence>
-  );
+  )
 }

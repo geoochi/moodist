@@ -6,7 +6,7 @@
  * @returns {number} A random number between min (inclusive) and max (exclusive).
  */
 export function random(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
+  return Math.random() * (max - min) + min
 }
 
 /**
@@ -17,7 +17,7 @@ export function random(min: number, max: number): number {
  * @returns {number} A random integer between min (inclusive) and max (exclusive).
  */
 export function randomInt(min: number, max: number): number {
-  return Math.floor(random(min, max));
+  return Math.floor(random(min, max))
 }
 
 /**
@@ -29,12 +29,12 @@ export function randomInt(min: number, max: number): number {
  */
 export function pick<T>(array: Array<T>): T {
   if (array.length === 0) {
-    throw new Error("The array shouldn't be empty");
+    throw new Error("The array shouldn't be empty")
   }
 
-  const randomIndex = randomInt(0, array.length);
+  const randomIndex = randomInt(0, array.length)
 
-  return array[randomIndex];
+  return array[randomIndex]
 }
 
 /**
@@ -46,9 +46,9 @@ export function pick<T>(array: Array<T>): T {
  * @returns {Array<T>} An array containing the picked elements.
  */
 export function pickMany<T>(array: Array<T>, count: number): Array<T> {
-  const shuffled = shuffle(array);
+  const shuffled = shuffle(array)
 
-  return shuffled.slice(0, count);
+  return shuffled.slice(0, count)
 }
 
 /**
@@ -62,5 +62,5 @@ export function shuffle<T>(array: Array<T>): Array<T> {
   return array
     .map(value => ({ sort: Math.random(), value }))
     .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value);
+    .map(({ value }) => value)
 }

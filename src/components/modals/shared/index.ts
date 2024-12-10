@@ -1,1 +1,1 @@
-export { SharedModal } from './shared';
+export { SharedModal } from './shared'

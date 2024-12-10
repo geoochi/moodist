@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
-import type { KeyboardEvent } from 'react';
+import { useCallback } from 'react'
+import type { KeyboardEvent } from 'react'
 
 /**
  * A custom React hook that creates a keyboard event handler for 'Enter' and 'Space' keys.
@@ -13,13 +13,13 @@ export const useKeyboardButton = (
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLElement>) => {
       if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        actionCallback();
-        event.stopPropagation();
+        event.preventDefault()
+        actionCallback()
+        event.stopPropagation()
       }
     },
     [actionCallback],
-  );
+  )
 
-  return handleKeyDown;
-};
+  return handleKeyDown
+}

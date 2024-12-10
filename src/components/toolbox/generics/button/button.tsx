@@ -1,15 +1,15 @@
-import { Tooltip } from '@/components/tooltip';
+import { Tooltip } from '@/components/tooltip'
 
-import { cn } from '@/helpers/styles';
+import { cn } from '@/helpers/styles'
 
-import styles from './button.module.css';
+import styles from './button.module.css'
 
 interface ButtonProps {
-  disabled?: boolean;
-  icon: React.ReactElement;
-  onClick: () => void;
-  smallIcon?: boolean;
-  tooltip: string;
+  disabled?: boolean
+  icon: React.ReactElement
+  onClick: () => void
+  smallIcon?: boolean
+  tooltip: string
 }
 
 export function Button({
@@ -20,7 +20,7 @@ export function Button({
   tooltip,
 }: ButtonProps) {
   return (
-    <Tooltip content={tooltip} placement="bottom" showDelay={0}>
+    <Tooltip content={tooltip} placement='bottom' showDelay={0}>
       <button
         className={cn(styles.button, smallIcon && styles.smallIcon)}
         disabled={disabled}
@@ -29,5 +29,5 @@ export function Button({
         {icon}
       </button>
     </Tooltip>
-  );
+  )
 }

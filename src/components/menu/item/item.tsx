@@ -1,16 +1,16 @@
-import { FiExternalLink } from 'react-icons/fi/index';
-import { Item as DropdownItem } from '@radix-ui/react-dropdown-menu';
+import { FiExternalLink } from 'react-icons/fi'
+import { Item as DropdownItem } from '@radix-ui/react-dropdown-menu'
 
-import styles from './item.module.css';
+import styles from './item.module.css'
 
 interface ItemProps {
-  active?: boolean;
-  disabled?: boolean;
-  href?: string;
-  icon: React.ReactElement;
-  label: string;
-  onClick?: () => void;
-  shortcut?: string;
+  active?: boolean
+  disabled?: boolean
+  href?: string
+  icon: React.ReactElement
+  label: string
+  onClick?: () => void
+  shortcut?: string
 }
 
 export function Item({
@@ -22,7 +22,7 @@ export function Item({
   onClick = () => {},
   shortcut,
 }: ItemProps) {
-  const Comp = href ? 'a' : 'button';
+  const Comp = href ? 'a' : 'button'
 
   return (
     <DropdownItem asChild onClick={onClick}>
@@ -46,5 +46,5 @@ export function Item({
         )}
       </Comp>
     </DropdownItem>
-  );
+  )
 }

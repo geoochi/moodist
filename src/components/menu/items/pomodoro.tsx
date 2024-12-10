@@ -1,23 +1,23 @@
-import { MdOutlineAvTimer } from 'react-icons/md/index';
+import { MdOutlineAvTimer } from 'react-icons/md'
 
-import { Item } from '../item';
+import { Item } from '../item'
 
-import { usePomodoroStore } from '@/stores/pomodoro';
+import { usePomodoroStore } from '@/stores/pomodoro'
 
 interface PomodoroProps {
-  open: () => void;
+  open: () => void
 }
 
 export function Pomodoro({ open }: PomodoroProps) {
-  const running = usePomodoroStore(state => state.running);
+  const running = usePomodoroStore(state => state.running)
 
   return (
     <Item
       active={running}
       icon={<MdOutlineAvTimer />}
-      label="Pomodoro"
-      shortcut="Shift + P"
+      label='Pomodoro'
+      shortcut='Shift + P'
       onClick={open}
     />
-  );
+  )
 }

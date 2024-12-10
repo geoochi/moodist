@@ -1,18 +1,18 @@
-import { RiPlayListFill } from 'react-icons/ri/index';
+import { RiPlayListFill } from 'react-icons/ri'
 
-import { Item } from '../item';
+import { Item } from '../item'
 
 interface PresetsProps {
-  open: () => void;
+  open: () => void
 }
 
 export function Presets({ open }: PresetsProps) {
   return (
     <Item
       icon={<RiPlayListFill />}
-      label="Your Presets"
-      shortcut="Shift + Alt + P"
+      label='Your Presets'
+      shortcut='Shift + Alt + P'
       onClick={open}
     />
-  );
+  )
 }

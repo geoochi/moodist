@@ -1,6 +1,6 @@
-import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
+import { type Dispatch, type SetStateAction, useEffect, useState } from 'react'
 
-type SetValue<T> = Dispatch<SetStateAction<T>>;
+type SetValue<T> = Dispatch<SetStateAction<T>>
 
 /**
  * A custom React hook to manage state with localStorage persistence.
@@ -11,27 +11,27 @@ type SetValue<T> = Dispatch<SetStateAction<T>>;
  * @returns {[T, SetValue<T>]} An array containing the stateful value and a function to update it.
  */
 export function useLocalStorage<T>(key: string, fallback: T): [T, SetValue<T>] {
-  const [value, setValue] = useState(fallback);
+  const [value, setValue] = useState(fallback)
 
   useEffect(() => {
-    const value = localStorage.getItem(key);
+    const value = localStorage.getItem(key)
 
-    if (!value) return;
+    if (!value) return
 
-    let parsed;
+    let parsed
 
     try {
-      parsed = JSON.parse(value);
+      parsed = JSON.parse(value)
     } catch (error) {
-      parsed = fallback;
+      parsed = fallback
     }
 
-    setValue(parsed);
-  }, [key, fallback]);
+    setValue(parsed)
+  }, [key, fallback])
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [value, key]);
+    localStorage.setItem(key, JSON.stringify(value))
+  }, [value, key])
 
-  return [value, setValue];
+  return [value, setValue]
 }

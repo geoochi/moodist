@@ -1,16 +1,16 @@
-import { BiMoney, BiUserCircle, BiLogoGithub } from 'react-icons/bi/index';
-import { BsSoundwave, BsStars } from 'react-icons/bs/index';
-import { RxMixerHorizontal } from 'react-icons/rx/index';
+import { BiMoney, BiUserCircle, BiLogoGithub } from 'react-icons/bi'
+import { BsSoundwave, BsStars } from 'react-icons/bs'
+import { RxMixerHorizontal } from 'react-icons/rx'
 
-import { Balancer } from 'react-wrap-balancer';
+import { Balancer } from 'react-wrap-balancer'
 
-import { Container } from '@/components/container';
-import { count as soundCount } from '@/lib/sounds';
+import { Container } from '@/components/container'
+import { count as soundCount } from '@/lib/sounds'
 
-import styles from './features.module.css';
+import styles from './features.module.css'
 
 export function Features() {
-  const count = soundCount();
+  const count = soundCount()
 
   const features = [
     {
@@ -66,7 +66,7 @@ export function Features() {
       label: 'Save Presets',
       soon: true,
     },
-  ];
+  ]
 
   return (
     <section className={styles.featuresSection}>
@@ -103,5 +103,5 @@ export function Features() {
         </div>
       </Container>
     </section>
-  );
+  )
 }

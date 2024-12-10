@@ -1,17 +1,17 @@
-import { nature } from './sounds/nature';
-import { rain } from './sounds/rain';
-import { animals } from './sounds/animals';
-import { urban } from './sounds/urban';
-import { places } from './sounds/places';
-import { transport } from './sounds/transport';
-import { things } from './sounds/things';
-import { noise } from './sounds/noise';
-import { binaural } from './sounds/binaural';
+import { nature } from './sounds/nature'
+import { rain } from './sounds/rain'
+import { animals } from './sounds/animals'
+import { urban } from './sounds/urban'
+import { places } from './sounds/places'
+import { transport } from './sounds/transport'
+import { things } from './sounds/things'
+import { noise } from './sounds/noise'
+import { binaural } from './sounds/binaural'
 
-import type { Categories } from './types';
+import type { Categories } from './types'
 
 export const sounds: {
-  categories: Categories;
+  categories: Categories
 } = {
   categories: [
     nature,
@@ -24,4 +24,4 @@ export const sounds: {
     noise,
     binaural,
   ],
-};
+}

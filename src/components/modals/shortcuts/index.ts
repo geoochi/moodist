@@ -1,1 +1,1 @@
-export { ShortcutsModal } from './shortcuts';
+export { ShortcutsModal } from './shortcuts'

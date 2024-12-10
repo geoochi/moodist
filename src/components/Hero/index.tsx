@@ -15,7 +15,7 @@ export function Hero() {
             aria-hidden='true'
             className={styles.logo}
             height={45}
-            src='/logo.svg'
+            src='./logo.svg'
             width={45}
           />
 
